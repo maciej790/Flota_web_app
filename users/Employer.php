@@ -51,12 +51,12 @@ class Employer extends DatabaseConnection
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 
         if ($result1['czy_wypozyczony']) {
-            echo "Błąd: Pracownik zapytał już o ten pojazd!" . "<br>";
+            echo "<h3 class='error'>Błąd: Pracownik zapytał już o ten pojazd!</h3>" . "<br>";
         } else {
             if ($poczatek > $koniec) {
-                echo "Data początku wypożyczenia jest dłuższa niż data końca!" . "<br>";
+                echo "<h3 class='error'>Data początku wypożyczenia jest dłuższa niż data końca!</h3>" . "<br>";
             } else if ($poczatek < date("Y-m-d")) {
-                echo "Próbujesz wypożyczyć pojazd z datą z przeszłości!" . "<br>";
+                echo "<h3 class='error'>Próbujesz wypożyczyć pojazd z datą z przeszłości!</h3>" . "<br>";
             } else {
                 $sql2 = "INSERT INTO public.zapytania (
                     id_osoby, id_pojazdu, data_poczatek, data_koniec, uzasadnienie) VALUES (:id_osoby, :id_pojazdu, :data_poczatek, :data_koniec, :uzasadnienie)";

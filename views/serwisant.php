@@ -36,7 +36,7 @@ $serviceManager = new ServiceManager();
             <h1>Panel Serwisanta</h1>
             <form action="" method="get" class="topbar__form">
                 <h3><?php echo $_SESSION['user']['imie'] . ' ' . $_SESSION['user']['nazwisko'] ?></h3>
-                <input type="submit" name="logout" value="wyloguj" class="logout" />
+                <input type="submit" name="logout" value="Wyloguj się" class="logout" />
             </form>
         </header>
         <?php
@@ -112,29 +112,37 @@ $serviceManager = new ServiceManager();
             {
 
                 $vehicle = $serviceManager->getVehicleById($_GET['przeglad']);
-
+                echo '<div class="styled__form">';
                 echo "<h2>Dokonaj przegladu</h2>";
                 if (isset($message)) echo "<p>$message</p>";
                 echo '<form action="" method="post">';
-                echo "<h3>Dokonujesz przeglądu pojazdu. Ustaw datę dokonanego przeglądu pojazdu</h3>";
-                echo '<label>data ostatniego przeglądu: <input required type="date" name="data_przegladu" value="' . htmlspecialchars($vehicle['data_przegladu']) . '"></label><br>';
+                echo "<h3 style='witdth:100%; text-align:center;'>Dokonujesz przeglądu pojazdu. Ustaw datę dokonanego przeglądu pojazdu</h3>";
+
+                echo '<label>Data ostatniego przeglądu:</label>';
+                echo '<input required type="date" name="data_przegladu" value="' . htmlspecialchars($vehicle['data_przegladu']) . '"><br>';
+
                 echo '<button type="submit" name="ustaw">Ustaw datę przeglądu</button>';
                 echo '</form>';
-            ?>
-
-                <?php
                 if (isset($_POST['ustaw'])) {
                     $data_przegladu = isset($_POST['data_przegladu']) ? $_POST['data_przegladu'] : null;
                     // Wywołanie metody edytowania menedżera
                     $result = $serviceManager->PrzegladPojazdu($_GET['przeglad'], $data_przegladu);
                     if ($result) {
-                        echo "Data przeglądu została zmieniona";
+                        echo "<h3 class='komunikat'>Data przeglądu została zmieniona</h3>";
                     } else {
-                        echo "Błąd przy wprowadzaniu daty przeglądu";
+                        echo "<h3 class='error'>Błąd przy wprowadzaniu daty przeglądu</h3>";
                     }
                 }
 
-                ?>
+                echo '</div>';
+
+
+
+
+
+            ?>
+
+
 
             <?php
             }
@@ -142,25 +150,26 @@ $serviceManager = new ServiceManager();
             function formularzSerwisowania($serviceManager)
             {
                 $vehicle = $serviceManager->getVehicleById($_GET['serwis']);
-
+                echo '<div class="styled__form">';
                 echo "<h2>Dokonaj przegladu</h2>";
                 if (isset($message)) echo "<p>$message</p>";
                 echo '<form action="" method="post">';
-                echo "<h3>Dokonujesz serwisu pojazdu. Wpisz dane serwioswe oraz ustaw odpowiedni status pojazdu</h3>";
-                echo '<label>Dane serwisowe: <input required type="text" name="dane_serwisowe"></label><br>';
+                echo "<h3 style='witdth:100%; text-align:center;'>Dokonujesz serwisu pojazdu. Wpisz dane serwisowe oraz ustaw odpowiedni status pojazdu</h3>";
 
-                echo '<label for="status">Status:</label>
-                <select name="status" id="status">
-                    <option value="dostepny"' . ($vehicle['status'] === 'dostepny' ? ' selected' : '') . '>Dostępny</option>
-                    <option value="niedostepny"' . ($vehicle['status'] === 'niedostepny' ? ' selected' : '') . '>Niedostępny</option>
-                    <option value="serwisowany"' . ($vehicle['status'] === 'serwisowany' ? ' selected' : '') . '>Serwisowany</option>
-                </select>';
+                echo '<label>Dane serwisowe:</label>';
+                echo '<input required type="text" name="dane_serwisowe"><br>';
+
+                echo '<label for="status">Status:</label>';
+                echo '<select name="status" id="status">
+                        <option value="dostepny"' . ($vehicle['status'] === 'dostepny' ? ' selected' : '') . '>Dostępny</option>
+                        <option value="niedostepny"' . ($vehicle['status'] === 'niedostepny' ? ' selected' : '') . '>Niedostępny</option>
+                        <option value="serwisowany"' . ($vehicle['status'] === 'serwisowany' ? ' selected' : '') . '>Serwisowany</option>
+                      </select><br>';
 
                 echo '<button type="submit" name="serwis">Zapisz serwis</button>';
                 echo '</form>';
-            ?>
 
-                <?php
+
                 if (isset($_POST['serwis'])) {
                     $dane_serwisowe = isset($_POST['dane_serwisowe']) ? $_POST['dane_serwisowe'] : null;
                     $status = isset($_POST['status']) ? $_POST['status'] : null;
@@ -168,13 +177,16 @@ $serviceManager = new ServiceManager();
                     // Wywołanie metody edytowania menedżera
                     $result = $serviceManager->servieVehicle($_GET['serwis'], $dane_serwisowe, $status);
                     if ($result) {
-                        echo "Dane serwisowe zostały poprawnie zmienione";
+                        echo "<h3 class='komunikat'>Dane serwisowe zostały poprawnie zmienione</h3>";
                     } else {
-                        echo "Błąd przy wprowadzaniu danych!";
+                        echo "<h3 class='error'>Błąd przy wprowadzaniu danych!</h3>";
                     }
                 }
 
-                ?>
+                echo '</div>';
+
+            ?>
+
 
             <?php
             }
