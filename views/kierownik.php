@@ -223,9 +223,15 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
                         <input type="submit" id="delete-false" name="delete-false" value="nie">
                     </form>
                     <?php
+
                     if (isset($_POST['delete-true'])) {
-                        $manager->deleteEmployer($_GET['delete']);
-                        header('Location:admin.php');
+                        try {
+                            $manager->deleteEmployer($_GET['delete']);
+                            header('Location:admin.php');
+                        } catch (Exception $e) {
+                            echo '<br>';
+                            echo "<div class='error-message'>Ten użytkownik ma utworzony aktywny przydział na pojazd! Najpierw zakończ przydział. </div>";
+                        }
                     } else if (isset($_POST['delete-false'])) {
                         header('Location:admin.php');
                     }
@@ -564,7 +570,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
                         } catch (Exception $e) {
                             // Wyświetl tylko Twój komunikat
                             echo '<br>';
-                            echo "<div class='error-message'>Pojazd jest przydzielony lub jest w zapytaniu u któregoś z pracowników, najpierw zakończ przydział lub odrzuć zapytanie!</div>";
+                            echo "<div class='error-message'>Pojazd jest w użytkowaniu! Najpierw zakończ przydział na ten pojazd lub odrzuć aktywne zapytanie.</div>";
                         }
                     } else if (isset($_POST['delete-false'])) {
                         header('Location: kierownik.php?pojazdy ');
