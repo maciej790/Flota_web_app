@@ -165,3 +165,153 @@ table td a.delete {
 table td a.delete:hover {
     background-color: #c0392b;
 }
+
+.styled__form {
+    background-color: #ffffff; /* Białe tło formularza */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Delikatny cień */
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.styled__form h2 {
+    color: #2c3e50; /* Kolor tytułu */
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.styled__form label {
+    display: block;
+    color: #34495e;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.styled__form input {
+    width: 50%; /* Szerokość na 100% kontenera */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7; /* Neutralny szary kolor */
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.styled__form input:focus {
+    border-color: #2980b9; /* Akcent kolorystyczny na focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+}
+
+.styled__form button {
+    display: block;
+    width: 30%;
+    max-width: 400px; /* Dopasowanie przycisku */
+    padding: 12px;
+    background-color: #2980b9;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.styled__form button:hover {
+    background-color: #1f618d;
+}
+
+.styled__form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Wycentrowanie */
+}
+
+.komunikat{
+    color: #0dbd16;
+    width: 100%;
+    text-align: center;
+}
+
+.error{
+    color: #c11a1a;
+    width: 100%;
+    text-align: center;
+}
+
+.delete__form {
+    background-color: #f8d7da; /* Jasnoczerwone tło dla ostrzeżenia */
+    border: 1px solid #f5c2c7; /* Obramowanie w odcieniu czerwieni */
+    border-radius: 8px; /* Zaokrąglenie rogów */
+    padding: 20px; /* Odstęp wewnętrzny */
+    max-width: 500px; /* Maksymalna szerokość formularza */
+    margin: 50px auto; /* Wyśrodkowanie na stronie */
+    text-align: center; /* Wyśrodkowanie tekstu */
+    font-family: Arial, sans-serif; /* Przyjemna czcionka */
+    color: #842029; /* Ciemnoczerwony kolor tekstu */
+}
+
+.delete__form h2 {
+    font-size: 1.5rem; /* Wielkość nagłówka */
+    margin-bottom: 20px; /* Odstęp poniżej nagłówka */
+}
+
+.delete__form p {
+    font-size: 1rem; /* Rozmiar tekstu */
+    margin-bottom: 15px; /* Odstęp poniżej akapitu */
+}
+
+.delete__form button {
+    background-color: #dc3545; /* Czerwony kolor przycisków */
+    color: white; /* Biały kolor tekstu */
+    border: none; /* Bez obramowania */
+    border-radius: 5px; /* Zaokrąglenie rogów */
+    padding: 10px 20px; /* Wewnętrzne odstępy przycisków */
+    margin: 5px; /* Odstęp między przyciskami */
+    font-size: 1rem; /* Rozmiar czcionki */
+    cursor: pointer; /* Wskaźnik na przyciskach */
+    transition: background-color 0.3s ease; /* Animacja zmiany koloru */
+}
+
+.delete__form button:hover {
+    background-color: #b02a37; /* Ciemniejszy czerwony na hover */
+}
+
+.delete__form button:focus {
+    outline: none; /* Usunięcie obramowania po kliknięciu */
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.5); /* Delikatny efekt focus */
+}
+
+/* Stylizacja kontenera dla pola select */
+select {
+    width: 50%; /* Szerokość dostosowana do rodzica */
+    padding: 10px; /* Wewnętrzne odstępy */
+    font-size: 1rem; /* Rozmiar tekstu */
+    border: 1px solid #ccc; /* Obramowanie */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    background-color: #f9f9f9; /* Delikatne tło */
+    color: #333; /* Kolor tekstu */
+    appearance: none; /* Usunięcie domyślnego wyglądu */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Animacje */
+    margin-top: 5px; /* Odstęp od etykiety */
+    text-align: center;
+}
+
+select:focus {
+    border-color: #007bff; /* Kolor obramowania po focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efekt podświetlenia */
+    outline: none; /* Usunięcie domyślnego focusa */
+}
+
+/* Stylizacja opcji */
+select option {
+    padding: 10px; /* Wewnętrzne odstępy opcji */
+    font-size: 1rem; /* Rozmiar czcionki */
+    color: #333; /* Kolor tekstu */
+}
+
+

@@ -33,7 +33,7 @@ $employer = new Employer();
             <h1>Panel Pracownika</h1>
             <form action="" method="get" class="topbar__form">
                 <h3><?php echo $_SESSION['user']['imie'] . ' ' . $_SESSION['user']['nazwisko'] ?></h3>
-                <input type="submit" name="logout" value="wyloguj" class="logout" />
+                <input type="submit" name="logout" value="Wyloguj się" class="logout" />
             </form>
         </header>
 
@@ -136,40 +136,43 @@ $employer = new Employer();
             {
 
             ?>
-                <h2>Stwórz zapytanie o pojazd</h2>
-                <?php if (isset($message)) echo "<p>$message</p>"; ?>
-                <form method="POST" action="">
-                    <label for="imie">Data początku wynajmu:</label>
-                    <input type="date" id="imie" name="poczatek" required>
+                <div class="styled__form">
+                    <h2>Stwórz zapytanie o pojazd</h2>
+                    <?php if (isset($message)) echo "<p>$message</p>"; ?>
+                    <form method="POST" action="">
+                        <label for="imie">Data początku wynajmu:</label>
+                        <input type="date" id="imie" name="poczatek" required>
 
-                    <label for="imie">Data końca wynajmu:</label>
-                    <input type="date" id="imie" name="koniec" required>
+                        <label for="imie">Data końca wynajmu:</label>
+                        <input type="date" id="imie" name="koniec" required>
 
-                    <label for="nazwisko">Uzasadnienie:</label>
-                    <input type="text" id="nazwisko" name="uzasadnienie" required>
+                        <label for="nazwisko">Uzasadnienie:</label>
+                        <input type="text" id="nazwisko" name="uzasadnienie" required>
 
-                    <button type="submit" name="send">Wyślij zapytania</button>
-                </form>
+                        <button type="submit" name="send">Wyślij zapytania</button>
+                    </form>
 
-                <?php
-                $poczatek = $_POST['poczatek'] ?? '';
-                $koniec = $_POST['koniec'] ?? '';
-                $uzasadnienie = $_POST['uzasadnienie'] ?? '';
+                    <?php
+                    $poczatek = $_POST['poczatek'] ?? '';
+                    $koniec = $_POST['koniec'] ?? '';
+                    $uzasadnienie = $_POST['uzasadnienie'] ?? '';
 
 
 
-                if (isset($_POST['send'])) {
-                    if ($poczatek && $koniec && $uzasadnienie) {
-                        $result = $employer->sendRequest($poczatek, $koniec, $uzasadnienie, $_GET['query']);
-                        if ($result) {
-                            echo  "Zapytanie zostało wysłane, zostanie wkrótce rozpatrzone.";
-                        } else {
-                            echo  "Wystąpił błąd podczas wysyłania zapytania.";
+                    if (isset($_POST['send'])) {
+                        if ($poczatek && $koniec && $uzasadnienie) {
+                            $result = $employer->sendRequest($poczatek, $koniec, $uzasadnienie, $_GET['query']);
+                            if ($result) {
+                                echo  "<h3 class='komunikat'>Zapytanie zostało wysłane, zostanie wkrótce rozpatrzone.</h3>";
+                            } else {
+                                echo  "<h3 class='error'>Wystąpił błąd podczas wysyłania zapytania.</h3>";
+                            }
                         }
                     }
-                }
 
-                ?>
+                    ?>
+
+                </div>
 
             <?php
             }
