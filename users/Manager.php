@@ -32,8 +32,21 @@ class Manager extends DatabaseConnection
 
     public function deleteEmployer($id)
     {
-        $sql = "DELETE FROM osoby WHERE id_osoby='$id'";
-        return $this->pdo->exec($sql);
+
+        $sql1 = "SELECT COUNT(*) FROM wypozyczenia WHERE id_osoby = $id";
+
+
+        $stmt = $this->pdo->prepare($sql1);
+        $stmt->execute();
+
+        $czyWypozyczony = $stmt->fetchColumn();
+
+        if ($czyWypozyczony == 0) {
+            $sql2 = "DELETE FROM osoby WHERE id_osoby='$id'";
+            return $this->pdo->exec($sql2);
+        } else {
+            throw new Exception("Dupa.");
+        }
     }
 
 
